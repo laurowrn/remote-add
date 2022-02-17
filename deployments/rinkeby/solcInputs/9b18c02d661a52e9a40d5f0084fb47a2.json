@@ -1,0 +1,35 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/Token.sol": {
+      "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.4;\r\n\r\ncontract Token {\r\n    mapping(address => uint256) private _balances;\r\n    uint256 private _totalSupply;\r\n    address private _owner;\r\n\r\n    constructor() {\r\n        _owner = msg.sender;\r\n        uint256 initialSupply = 1000 * 10**18;\r\n        _balances[_owner] = initialSupply;\r\n        _totalSupply = _totalSupply + initialSupply;\r\n    }\r\n\r\n    function totalSupply() external view returns (uint256) {\r\n        return _totalSupply;\r\n    }\r\n\r\n    function balanceOf(address account) external view returns (uint256) {\r\n        return _balances[account];\r\n    }\r\n\r\n    function transfer(address recipient, uint256 amount)\r\n        external\r\n        returns (bool)\r\n    {\r\n        require(_balances[msg.sender] >= amount);\r\n        require(msg.sender != address(0));\r\n        _transfer(msg.sender, recipient, amount);\r\n        return true;\r\n    }\r\n\r\n    function mint() external returns (bool) {\r\n        _transfer(address(0), msg.sender, 10 * 10**18);\r\n\r\n        return true;\r\n    }\r\n\r\n    function _transfer(\r\n        address sender,\r\n        address recipient,\r\n        uint256 amount\r\n    ) internal {\r\n        require(recipient != address(0));\r\n\r\n        _balances[sender] = _balances[sender] - amount;\r\n        _balances[recipient] = _balances[recipient] + amount;\r\n        emit Transfer(sender, recipient, amount);\r\n    }\r\n\r\n    event Transfer(address owner, address recipient, uint256 amount);\r\n    event Mint(address recipient, uint256 amount);\r\n}\r\n"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "name": "simple-token",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ethersproject/hardware-wallets": "^5.5.0",
+    "@types/chai": "^4.3.0",
+    "@types/mocha": "^9.1.0",
+    "@types/node": "^17.0.18",
+    "chai": "^4.3.6",
+    "chai-ethers": "0.0.1",
+    "dotenv": "^16.0.0",
+    "ethers": "^5.5.4",
+    "hardhat": "^2.8.4",
+    "hardhat-deploy": "^0.10.5",
+    "hardhat-deploy-ethers": "^0.3.0-beta.13",
+    "mocha": "^9.2.0",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  }
+}
